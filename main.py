@@ -21,6 +21,9 @@ def main() -> int:
     if not (1 <= len(text) <= 120) or not text.strip():
         print("entry fails the 1-120 character gate", file=sys.stderr)
         return 1
+    if "\n" in text or "\r" in text:
+        print("entry must be a single line", file=sys.stderr)
+        return 1
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
